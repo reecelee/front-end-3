@@ -10,7 +10,6 @@ export default function App() {
     return [...currentTodos, {id:crypto.randomUUID(), title: newItem, completed: false},]
     }) 
 
-    console.log(todos)
   }
   
   return <>
@@ -22,14 +21,17 @@ export default function App() {
     <button className="btn">Add</button>
   </form>
   <h1 className="header">Todo List</h1>
-  <ul>
-    <li>
+  <ul className="list">
+    {todos.map(todo => {
+      return <li>
     <label>
-    <input type="checkbox"></input>
-    Item 1
+    <input type="checkbox" checked={todo.completed}></input>
+    {todo.title}
     </label>
     <button className="btn btn-danger">Delete</button>
     </li>
+    })}
+    
   </ul>
   </>
 }
